@@ -26,6 +26,11 @@ You can register the ProxymanNetworkDiscoveryManager by adding the following cod
 )
 ```
 
+**Note**: If you want to limit allowed services/devices, you can find the name of your Mac in Proxyman
+Open Proxyman on your macbook and navigate to </br>
+Certificate > Install certificate on ios > With Atlantis… > Click on "how to start atlantis?" >  If you only want to connect to your Mac rather than colleague's Mac
+
+
 ### Adding the ProxymanInterceptor to Retrofit/OkhttpClient
 
 You will need to add the ProxymanInterceptor to your OkhttpClient.
