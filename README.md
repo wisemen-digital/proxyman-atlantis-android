@@ -17,17 +17,12 @@ It will convert this data to the appropriate Proxyman Message type and will ask 
 
 You can register the ProxymanNetworkDiscoveryManager by adding the following code in your App class.
 
-context --> App context
-deviceName --> This string will be used as the name for your device in Proxyman. If you don't override it , it will try to create a name from your bluetooth name. You can check the logic in the Packages class.
-allowedServices --> A list of strings. You can use this list to limit to which devices the ProxymanNetworkDiscoveryManager will connect. Something like "Mac book name.local".
-isLoggingEnabled --> Enabled/disables all loggers in the ProxymanNetworkDiscoveryManager.
-
 ```kotlin
  ProxymanNetworkDiscoveryManager.registerService(
-    context,
-    deviceName,
-    allowedServices,
-    isLoggingEnabled
+    context, // <-- App context
+    deviceName,// <-- This string will be used as the name for your device in Proxyman. If you don't override it , it will try to create a name from your bluetooth name. You can check the logic in the Packages class.
+    allowedServices,// <-- A list of strings. You can use this list to limit to which devices the ProxymanNetworkDiscoveryManager will connect. Something like "Mac book name.local".
+    isLoggingEnabled// <-- Enabled/disables all loggers in the ProxymanNetworkDiscoveryManager.
 )
 ```
 
