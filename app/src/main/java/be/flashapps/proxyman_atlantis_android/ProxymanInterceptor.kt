@@ -6,7 +6,7 @@ import okio.Buffer
 import java.lang.Exception
 import java.util.*
 
-class ProxyManInterceptor : Interceptor {
+class ProxymanInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
@@ -62,7 +62,7 @@ class ProxyManInterceptor : Interceptor {
                 trafficPackage
             )
 
-            ProxyManNetworkDiscoveryManager.send(trafficMessageResponse)
+            ProxymanNetworkDiscoveryManager.send(trafficMessageResponse)
         }
     }
 }

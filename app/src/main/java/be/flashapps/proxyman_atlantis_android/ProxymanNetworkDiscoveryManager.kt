@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 import java.util.zip.GZIPOutputStream
 import kotlin.collections.ArrayList
 
-internal object ProxyManNetworkDiscoveryManager {
+internal object ProxymanNetworkDiscoveryManager {
 
 
     /**

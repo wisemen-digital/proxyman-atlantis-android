@@ -29,7 +29,7 @@ class ConnectionPackage : Data {
      */
 
     private fun getBase64Data(): String {
-        val drawable = ProxyManNetworkDiscoveryManager.getAppContext().packageManager.getApplicationIcon(project.bundleIdentifier)
+        val drawable = ProxymanNetworkDiscoveryManager.getAppContext().packageManager.getApplicationIcon(project.bundleIdentifier)
         val bitmap = drawable.toBitmap()
         val byteStream = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteStream)
@@ -70,12 +70,12 @@ class TrafficPackage(
     /**
      * @return if the responsebody is to large to send
      */
-    private fun isLargeResponseBody() = (responseBodyData?.count() ?: 0) > ProxyManNetworkDiscoveryManager.MaximumSizePackage
+    private fun isLargeResponseBody() = (responseBodyData?.count() ?: 0) > ProxymanNetworkDiscoveryManager.MaximumSizePackage
 
     /**
      * @return if the requestbody is to large to send
      */
-    private fun isLargeRequestBody() = (request.body?.count() ?: 0) > ProxyManNetworkDiscoveryManager.MaximumSizePackage
+    private fun isLargeRequestBody() = (request.body?.count() ?: 0) > ProxymanNetworkDiscoveryManager.MaximumSizePackage
 
     /**
      * updates the [TrafficPackage.error] of existing TrafficPackage with [exception]
@@ -105,7 +105,7 @@ class TrafficPackage(
 
     /**
      * Converts [TrafficPackage] to the needed data format
-     * It uses [ProxyManNetworkDiscoveryManager] , [Base64ArrayTypeAdapter] and [Base64TypeAdapter] to
+     * It uses [ProxymanNetworkDiscoveryManager] , [Base64ArrayTypeAdapter] and [Base64TypeAdapter] to
      * Base64 encodes all nested fields with types [Data] and [ByteArray].
      * When the [responseBodyData] or the [request] are too big we replace them with "<Skip Large Response Body>"
      */
@@ -114,7 +114,7 @@ class TrafficPackage(
             this.responseBodyData = "<Skip Large Response Body>".toByteArray()
         if (isLargeRequestBody())
             this.request.resetBody()
-        ProxyManNetworkDiscoveryManager.proxyManGson.toJson(this)
+        ProxymanNetworkDiscoveryManager.proxyManGson.toJson(this)
     }
 }
 
@@ -129,8 +129,8 @@ class Project {
         val current = Project()
     }
 
-    val name: String = ProxyManNetworkDiscoveryManager.getAppContext().applicationInfo.loadLabel(ProxyManNetworkDiscoveryManager.getAppContext().packageManager).toString()
-    val bundleIdentifier: String = ProxyManNetworkDiscoveryManager.getAppContext().packageName
+    val name: String = ProxymanNetworkDiscoveryManager.getAppContext().applicationInfo.loadLabel(ProxymanNetworkDiscoveryManager.getAppContext().packageManager).toString()
+    val bundleIdentifier: String = ProxymanNetworkDiscoveryManager.getAppContext().packageName
 }
 
 /**
@@ -144,8 +144,8 @@ class Device {
     }
 
     var name: String =
-        ProxyManNetworkDiscoveryManager.getDeviceName() ?: Settings.System.getString(ProxyManNetworkDiscoveryManager.getAppContext().contentResolver, "bluetooth_name")
-        ?: Settings.Secure.getString(ProxyManNetworkDiscoveryManager.getAppContext().contentResolver, "bluetooth_name") ?: Settings.System.getString(ProxyManNetworkDiscoveryManager.getAppContext().contentResolver, "device_name")
+        ProxymanNetworkDiscoveryManager.getDeviceName() ?: Settings.System.getString(ProxymanNetworkDiscoveryManager.getAppContext().contentResolver, "bluetooth_name")
+        ?: Settings.Secure.getString(ProxymanNetworkDiscoveryManager.getAppContext().contentResolver, "bluetooth_name") ?: Settings.System.getString(ProxymanNetworkDiscoveryManager.getAppContext().contentResolver, "device_name")
         ?: "${Build.DEVICE} ${Build.MODEL}"
     val model: String = name + " (API " + Build.VERSION.SDK_INT + ")"
 }
@@ -202,5 +202,5 @@ class Response(val statusCode: Int, val headers: Array<Header>)
 class Header(val key: String, val value: String)
 
 interface Data {
-    fun toData(): String = ProxyManNetworkDiscoveryManager.proxyManGson.toJson(this)
+    fun toData(): String = ProxymanNetworkDiscoveryManager.proxyManGson.toJson(this)
 }
